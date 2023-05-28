@@ -128,7 +128,7 @@ class _InterviewsWidgetState extends State<InterviewsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 24.0, 0.0),
                                       child: Text(
-                                        'Добавить интервъю',
+                                        'Добавить интервью',
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall,
                                       ),
@@ -394,18 +394,12 @@ class _InterviewsWidgetState extends State<InterviewsWidget> {
                                                                 feedInterviewQueryChild[
                                                                     feedInterviewQueryChildIndex];
                                                             return Visibility(
-                                                              visible: functions
-                                                                      .searchInChild(
-                                                                          _model
-                                                                              .searchInputController
-                                                                              .text,
-                                                                          _model
-                                                                              .interviewModels2
-                                                                              .getValueAtIndex(
-                                                                            feedInterviewQueryChildIndex,
-                                                                            (m) =>
-                                                                                m.searchData,
-                                                                          )) ??
+                                                              visible: functions.searchInChild(
+                                                                      _model
+                                                                          .searchInputController
+                                                                          .text,
+                                                                      feedInterviewQueryChildItem
+                                                                          .mainPart) ??
                                                                   true,
                                                               child:
                                                                   wrapWithModel(

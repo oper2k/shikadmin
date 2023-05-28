@@ -1,8 +1,8 @@
-import '/components/search_widget.dart';
 import '/fact/facts_compo/facts_compo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/nav_menu/nav_menu_widget.dart';
+import '/pages/search/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

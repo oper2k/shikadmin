@@ -53,267 +53,214 @@ class _UserWidgetState extends State<UserWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(
-          color: Color(0x0B000000),
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).primaryBackground,
+          borderRadius: BorderRadius.circular(12.0),
+          border: Border.all(
+            color: Color(0x0B000000),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 80.0,
-              height: 80.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).accent3,
-                shape: BoxShape.circle,
-              ),
-              child: Container(
+        child: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
                 width: 80.0,
                 height: 80.0,
-                clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).accent3,
                   shape: BoxShape.circle,
                 ),
-                child: CachedNetworkImage(
-                  imageUrl: valueOrDefault<String>(
-                    widget.usersRow?.photoUrl,
-                    '0',
+                child: Container(
+                  width: 80.0,
+                  height: 80.0,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
                   ),
-                  fit: BoxFit.cover,
+                  child: CachedNetworkImage(
+                    imageUrl: valueOrDefault<String>(
+                      widget.usersRow?.photoUrl,
+                      '0',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'id: ',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              'id: ',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            Text(
+                              valueOrDefault<String>(
+                                widget.usersRow?.id,
+                                'null',
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyLarge,
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Email: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.bold,
                                     ),
-                          ),
-                          Text(
-                            valueOrDefault<String>(
-                              widget.usersRow?.id,
-                              'null',
-                            ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Email: ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              valueOrDefault<String>(
-                                widget.usersRow?.email,
-                                'null',
                               ),
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Имя: ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              valueOrDefault<String>(
-                                widget.usersRow?.name,
-                                'null',
-                              ),
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Дата рождения: ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              valueOrDefault<String>(
-                                widget.usersRow?.birthDate,
-                                'null',
-                              ),
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'id курсов: ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Builder(
-                              builder: (context) {
-                                final usersCoursesRowChild = widget
-                                    .usersCoursesRowList!
-                                    .where(
-                                        (e) => e.userId == widget.usersRow?.id)
-                                    .toList();
-                                return Wrap(
-                                  spacing: 3.0,
-                                  runSpacing: 3.0,
-                                  alignment: WrapAlignment.start,
-                                  crossAxisAlignment: WrapCrossAlignment.start,
-                                  direction: Axis.horizontal,
-                                  runAlignment: WrapAlignment.start,
-                                  verticalDirection: VerticalDirection.down,
-                                  clipBehavior: Clip.none,
-                                  children:
-                                      List.generate(usersCoursesRowChild.length,
-                                          (usersCoursesRowChildIndex) {
-                                    final usersCoursesRowChildItem =
-                                        usersCoursesRowChild[
-                                            usersCoursesRowChildIndex];
-                                    return Text(
-                                      '${valueOrDefault<String>(
-                                        usersCoursesRowChildItem.courseId
-                                            ?.toString(),
-                                        'null',
-                                      )}, ',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                    );
-                                  }),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Builder(
-                              builder: (context) => InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await showAlignedDialog(
-                                    context: context,
-                                    isGlobal: true,
-                                    avoidOverflow: false,
-                                    targetAnchor: Alignment(0.0, 0.0),
-                                    followerAnchor: Alignment(0.0, 0.0),
-                                    builder: (dialogContext) {
-                                      return Material(
-                                        color: Colors.transparent,
-                                        child: UsersFormWidget(
-                                          usersRow: widget.usersRow,
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => setState(() {}));
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Редактировать',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Container(
-                                      width: 40.0,
-                                      height: 40.0,
-                                      decoration: BoxDecoration(),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          FFIcons.kfluentEdit16Regular,
-                                          color: FlutterFlowTheme.of(context)
-                                              .black,
-                                          size: 24.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                              Text(
+                                valueOrDefault<String>(
+                                  widget.usersRow?.email,
+                                  'null',
                                 ),
+                                style: FlutterFlowTheme.of(context).bodyLarge,
                               ),
-                            ),
-                            Builder(
-                              builder: (context) => Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
-                                child: InkWell(
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Имя: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                valueOrDefault<String>(
+                                  widget.usersRow?.name,
+                                  'null',
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyLarge,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Дата рождения: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                valueOrDefault<String>(
+                                  widget.usersRow?.birthDate,
+                                  'null',
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyLarge,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'id курсов: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Builder(
+                                builder: (context) {
+                                  final usersCoursesRowChild = widget
+                                      .usersCoursesRowList!
+                                      .where((e) =>
+                                          e.userId == widget.usersRow?.id)
+                                      .toList();
+                                  return Wrap(
+                                    spacing: 3.0,
+                                    runSpacing: 3.0,
+                                    alignment: WrapAlignment.start,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
+                                    direction: Axis.horizontal,
+                                    runAlignment: WrapAlignment.start,
+                                    verticalDirection: VerticalDirection.down,
+                                    clipBehavior: Clip.none,
+                                    children: List.generate(
+                                        usersCoursesRowChild.length,
+                                        (usersCoursesRowChildIndex) {
+                                      final usersCoursesRowChildItem =
+                                          usersCoursesRowChild[
+                                              usersCoursesRowChildIndex];
+                                      return Text(
+                                        '${valueOrDefault<String>(
+                                          usersCoursesRowChildItem.courseId
+                                              ?.toString(),
+                                          'null',
+                                        )}, ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      );
+                                    }),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 24.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Builder(
+                                builder: (context) => InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
@@ -328,8 +275,8 @@ class _UserWidgetState extends State<UserWidget> {
                                       builder: (dialogContext) {
                                         return Material(
                                           color: Colors.transparent,
-                                          child: UsersCoursesFormWidget(
-                                            usersRow: widget.usersRow!,
+                                          child: UsersFormWidget(
+                                            usersRow: widget.usersRow,
                                           ),
                                         );
                                       },
@@ -339,7 +286,7 @@ class _UserWidgetState extends State<UserWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Text(
-                                        'Доступ к курсам',
+                                        'Редактировать',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
@@ -355,10 +302,10 @@ class _UserWidgetState extends State<UserWidget> {
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: Icon(
-                                            FFIcons.kfluentLockClosed20Regular,
+                                            FFIcons.kfluentEdit16Regular,
                                             color: FlutterFlowTheme.of(context)
                                                 .black,
-                                            size: 30.0,
+                                            size: 24.0,
                                           ),
                                         ),
                                       ),
@@ -366,16 +313,76 @@ class _UserWidgetState extends State<UserWidget> {
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                              Builder(
+                                builder: (context) => Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showAlignedDialog(
+                                        context: context,
+                                        isGlobal: true,
+                                        avoidOverflow: false,
+                                        targetAnchor: Alignment(0.0, 0.0),
+                                        followerAnchor: Alignment(0.0, 0.0),
+                                        builder: (dialogContext) {
+                                          return Material(
+                                            color: Colors.transparent,
+                                            child: UsersCoursesFormWidget(
+                                              usersRow: widget.usersRow!,
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          'Доступ к курсам',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                        Container(
+                                          width: 40.0,
+                                          height: 40.0,
+                                          decoration: BoxDecoration(),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Icon(
+                                              FFIcons
+                                                  .kfluentLockClosed20Regular,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .black,
+                                              size: 30.0,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

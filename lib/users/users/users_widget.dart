@@ -1,9 +1,10 @@
 import '/backend/supabase/supabase.dart';
-import '/components/search_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/nav_menu/nav_menu_widget.dart';
+import '/pages/search/search_widget.dart';
 import '/users/user/user_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -196,63 +197,152 @@ class _UsersWidgetState extends State<UsersWidget> {
                                                       child: SearchWidget(),
                                                     ),
                                                   ),
-                                                  Flexible(
-                                                    child: Builder(
-                                                      builder: (context) {
-                                                        final usersQueryChild =
-                                                            usersQueryUsersRowList
-                                                                .toList();
-                                                        return SingleChildScrollView(
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: List.generate(
-                                                                usersQueryChild
-                                                                    .length,
-                                                                (usersQueryChildIndex) {
-                                                              final usersQueryChildItem =
-                                                                  usersQueryChild[
-                                                                      usersQueryChildIndex];
-                                                              return Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        16.0,
-                                                                        16.0,
-                                                                        16.0),
-                                                                child:
-                                                                    wrapWithModel(
-                                                                  model: _model
-                                                                      .userModels
-                                                                      .getModel(
-                                                                    usersQueryChildIndex
-                                                                        .toString(),
-                                                                    usersQueryChildIndex,
+                                                  if (_model
+                                                              .searchModel
+                                                              .searchfieldController
+                                                              .text ==
+                                                          null ||
+                                                      _model
+                                                              .searchModel
+                                                              .searchfieldController
+                                                              .text ==
+                                                          '')
+                                                    Flexible(
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          final usersQueryChild =
+                                                              usersQueryUsersRowList
+                                                                  .toList();
+                                                          return SingleChildScrollView(
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: List.generate(
+                                                                  usersQueryChild
+                                                                      .length,
+                                                                  (usersQueryChildIndex) {
+                                                                final usersQueryChildItem =
+                                                                    usersQueryChild[
+                                                                        usersQueryChildIndex];
+                                                                return Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          16.0,
+                                                                          16.0,
+                                                                          16.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .userModels1
+                                                                        .getModel(
+                                                                      usersQueryChildIndex
+                                                                          .toString(),
+                                                                      usersQueryChildIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        UserWidget(
+                                                                      key: Key(
+                                                                        'Keydi0_${usersQueryChildIndex.toString()}',
+                                                                      ),
+                                                                      usersRow:
+                                                                          usersQueryChildItem,
+                                                                      usersCoursesRowList:
+                                                                          usersCoursesQueryUsersCoursesRowList,
+                                                                    ),
                                                                   ),
-                                                                  updateCallback:
-                                                                      () => setState(
-                                                                          () {}),
-                                                                  updateOnChange:
+                                                                );
+                                                              }),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  if (_model
+                                                              .searchModel
+                                                              .searchfieldController
+                                                              .text !=
+                                                          null &&
+                                                      _model
+                                                              .searchModel
+                                                              .searchfieldController
+                                                              .text !=
+                                                          '')
+                                                    Flexible(
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          final usersQueryChild =
+                                                              usersQueryUsersRowList
+                                                                  .toList();
+                                                          return SingleChildScrollView(
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: List.generate(
+                                                                  usersQueryChild
+                                                                      .length,
+                                                                  (usersQueryChildIndex) {
+                                                                final usersQueryChildItem =
+                                                                    usersQueryChild[
+                                                                        usersQueryChildIndex];
+                                                                return Visibility(
+                                                                  visible: functions.searchInChild(
+                                                                          _model
+                                                                              .searchModel
+                                                                              .searchfieldController
+                                                                              .text,
+                                                                          usersQueryChildItem
+                                                                              .name) ??
                                                                       true,
                                                                   child:
-                                                                      UserWidget(
-                                                                    key: Key(
-                                                                      'Keydi0_${usersQueryChildIndex.toString()}',
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            16.0,
+                                                                            16.0,
+                                                                            16.0,
+                                                                            16.0),
+                                                                    child:
+                                                                        wrapWithModel(
+                                                                      model: _model
+                                                                          .userModels2
+                                                                          .getModel(
+                                                                        usersQueryChildIndex
+                                                                            .toString(),
+                                                                        usersQueryChildIndex,
+                                                                      ),
+                                                                      updateCallback:
+                                                                          () =>
+                                                                              setState(() {}),
+                                                                      updateOnChange:
+                                                                          true,
+                                                                      child:
+                                                                          UserWidget(
+                                                                        key:
+                                                                            Key(
+                                                                          'Keyi8w_${usersQueryChildIndex.toString()}',
+                                                                        ),
+                                                                        usersRow:
+                                                                            usersQueryChildItem,
+                                                                        usersCoursesRowList:
+                                                                            usersCoursesQueryUsersCoursesRowList,
+                                                                      ),
                                                                     ),
-                                                                    usersRow:
-                                                                        usersQueryChildItem,
-                                                                    usersCoursesRowList:
-                                                                        usersCoursesQueryUsersCoursesRowList,
                                                                   ),
-                                                                ),
-                                                              );
-                                                            }),
-                                                          ),
-                                                        );
-                                                      },
+                                                                );
+                                                              }),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
-                                                  ),
                                                 ],
                                               ),
                                             ),
