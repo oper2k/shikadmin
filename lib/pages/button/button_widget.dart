@@ -11,7 +11,7 @@ class ButtonWidget extends StatefulWidget {
     Key? key,
     this.text,
     bool? isActive,
-    this.btnColor,
+    required this.btnColor,
   })  : this.isActive = isActive ?? false,
         super(key: key);
 

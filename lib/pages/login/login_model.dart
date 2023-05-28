@@ -1,8 +1,8 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
-import '/components/button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/button/button_widget.dart';
 import '/pages/login_access_failure/login_access_failure_widget.dart';
 import '/pages/login_access_success/login_access_success_widget.dart';
 import 'package:flutter/material.dart';

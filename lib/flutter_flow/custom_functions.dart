@@ -17,3 +17,7 @@ bool? searchInChild(
 ) {
   return textSearchIn!.toLowerCase().contains(textSearchFor!.toLowerCase());
 }
+
+int? convertStringToInt(String? str) {
+  return int.parse(str!);
+}

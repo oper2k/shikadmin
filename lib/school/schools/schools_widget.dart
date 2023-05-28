@@ -1,7 +1,8 @@
-import '/components/search_widget.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/nav_menu/nav_menu_widget.dart';
+import '/pages/search/search_widget.dart';
 import '/school/school_compo/school_compo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -157,18 +158,59 @@ class _SchoolsWidgetState extends State<SchoolsWidget> {
                                         ),
                                       ),
                                       Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Expanded(
-                                              child: wrapWithModel(
-                                                model: _model.schoolCompoModel,
-                                                updateCallback: () =>
-                                                    setState(() {}),
-                                                child: SchoolCompoWidget(),
-                                              ),
-                                            ),
-                                          ],
+                                        child: FutureBuilder<List<MapRow>>(
+                                          future: MapTable().queryRows(
+                                            queryFn: (q) => q,
+                                            limit: 10,
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<MapRow> columnMapRowList =
+                                                snapshot.data!;
+                                            return Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: List.generate(
+                                                  columnMapRowList.length,
+                                                  (columnIndex) {
+                                                final columnMapRow =
+                                                    columnMapRowList[
+                                                        columnIndex];
+                                                return Expanded(
+                                                  child: wrapWithModel(
+                                                    model: _model
+                                                        .schoolCompoModels
+                                                        .getModel(
+                                                      columnIndex.toString(),
+                                                      columnIndex,
+                                                    ),
+                                                    updateCallback: () =>
+                                                        setState(() {}),
+                                                    child: SchoolCompoWidget(
+                                                      key: Key(
+                                                        'Key2q5_${columnIndex.toString()}',
+                                                      ),
+                                                      feedQuizzesRow:
+                                                          columnMapRow,
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                            );
+                                          },
                                         ),
                                       ),
                                     ],
