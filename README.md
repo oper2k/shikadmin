@@ -1,6 +1,9 @@
 Ссылка на скачивание мобильного приложения:
 Android - https://drive.google.com/drive/folders/1oZIxaFXX3RoUzRW4yjbzqxkEgrYhqKWY?usp=sharing
 Apple - https://testflight.apple.com/join/Rp8eSl1m
+Можно использовать для входа 
+логин: oper2k@yandex.ru
+пароль: 123456
 
 Ссылка на веб админку - https://shikadmin.appful.pro
 использовать для входа 
