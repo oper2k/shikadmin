@@ -87,7 +87,16 @@ class _LoginAccessSuccessWidgetState extends State<LoginAccessSuccessWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('HomePage');
+                    context.pushNamed(
+                      'HomePage',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                        ),
+                      },
+                    );
                   },
                   child: wrapWithModel(
                     model: _model.buttonModel,

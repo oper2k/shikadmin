@@ -10,10 +10,10 @@ export 'school_compo_model.dart';
 class SchoolCompoWidget extends StatefulWidget {
   const SchoolCompoWidget({
     Key? key,
-    required this.feedQuizzesRow,
+    required this.mapRow,
   }) : super(key: key);
 
-  final MapRow? feedQuizzesRow;
+  final MapRow? mapRow;
 
   @override
   _SchoolCompoWidgetState createState() => _SchoolCompoWidgetState();
@@ -78,8 +78,8 @@ class _SchoolCompoWidgetState extends State<SchoolCompoWidget> {
                     ),
                     Text(
                       valueOrDefault<String>(
-                        widget.feedQuizzesRow?.id?.toString(),
-                        'id не установлено',
+                        widget.mapRow?.id?.toString(),
+                        'null',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
@@ -101,8 +101,8 @@ class _SchoolCompoWidgetState extends State<SchoolCompoWidget> {
                     ),
                     Text(
                       valueOrDefault<String>(
-                        widget.feedQuizzesRow?.title,
-                        'названия нет',
+                        widget.mapRow?.title,
+                        'null',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
@@ -123,7 +123,10 @@ class _SchoolCompoWidgetState extends State<SchoolCompoWidget> {
                           ),
                     ),
                     Text(
-                      'Hello World',
+                      valueOrDefault<String>(
+                        widget.mapRow?.adress,
+                        'null',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ],
@@ -146,7 +149,10 @@ class _SchoolCompoWidgetState extends State<SchoolCompoWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Hello World',
+                          valueOrDefault<String>(
+                            widget.mapRow?.phone,
+                            'null',
+                          ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ],
@@ -168,7 +174,10 @@ class _SchoolCompoWidgetState extends State<SchoolCompoWidget> {
                           ),
                     ),
                     Text(
-                      'Hello World',
+                      valueOrDefault<String>(
+                        widget.mapRow?.email,
+                        'null',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ],
@@ -188,7 +197,10 @@ class _SchoolCompoWidgetState extends State<SchoolCompoWidget> {
                           ),
                     ),
                     Text(
-                      'Hello World',
+                      valueOrDefault<String>(
+                        widget.mapRow?.category,
+                        'null',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ],
@@ -208,7 +220,10 @@ class _SchoolCompoWidgetState extends State<SchoolCompoWidget> {
                           ),
                     ),
                     Text(
-                      'Hello World',
+                      valueOrDefault<String>(
+                        widget.mapRow?.profession,
+                        'null',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ],

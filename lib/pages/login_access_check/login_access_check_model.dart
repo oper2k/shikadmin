@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 class LoginAccessCheckModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for loginAccessSuccess component.
   late LoginAccessSuccessModel loginAccessSuccessModel;
   // Model for loginAccessFailure component.
@@ -26,9 +27,12 @@ class LoginAccessCheckModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     loginAccessSuccessModel.dispose();
     loginAccessFailureModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 class InterviewsModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for navMenu component.
   late NavMenuModel navMenuModel;
   // State field(s) for SearchInput widget.
@@ -33,11 +34,14 @@ class InterviewsModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     navMenuModel.dispose();
     searchInputController?.dispose();
     interviewModels1.dispose();
     interviewModels2.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

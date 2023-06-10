@@ -1,34 +1,36 @@
+import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/button/button_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 class SchoolFormModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for HeroInput widget.
-  TextEditingController? heroInputController;
-  String? Function(BuildContext, String?)? heroInputControllerValidator;
-  // State field(s) for IntroductionInput widget.
-  TextEditingController? introductionInputController;
-  final introductionInputMask = MaskTextInputFormatter(mask: '##.##.####');
-  String? Function(BuildContext, String?)? introductionInputControllerValidator;
-  // State field(s) for SpecialityInput widget.
-  TextEditingController? specialityInputController1;
-  String? Function(BuildContext, String?)? specialityInputController1Validator;
-  // State field(s) for SpecialityInput widget.
-  TextEditingController? specialityInputController2;
-  String? Function(BuildContext, String?)? specialityInputController2Validator;
-  // State field(s) for SpecialityInput widget.
-  TextEditingController? specialityInputController3;
-  String? Function(BuildContext, String?)? specialityInputController3Validator;
-  // State field(s) for SpecialityInput widget.
-  TextEditingController? specialityInputController4;
-  String? Function(BuildContext, String?)? specialityInputController4Validator;
+  // State field(s) for SchoolNameInput widget.
+  TextEditingController? schoolNameInputController;
+  String? Function(BuildContext, String?)? schoolNameInputControllerValidator;
+  // State field(s) for AdressInput widget.
+  TextEditingController? adressInputController;
+  String? Function(BuildContext, String?)? adressInputControllerValidator;
+  // State field(s) for PhoneInput widget.
+  TextEditingController? phoneInputController;
+  String? Function(BuildContext, String?)? phoneInputControllerValidator;
+  // State field(s) for EmailInput widget.
+  TextEditingController? emailInputController;
+  String? Function(BuildContext, String?)? emailInputControllerValidator;
+  // State field(s) for DropDownCategory widget.
+  String? dropDownCategoryValue;
+  FormFieldController<String>? dropDownCategoryValueController;
+  // State field(s) for DropDownProfession widget.
+  String? dropDownProfessionValue;
+  FormFieldController<String>? dropDownProfessionValueController;
   // Model for button component.
   late ButtonModel buttonModel;
 
@@ -39,14 +41,14 @@ class SchoolFormModel extends FlutterFlowModel {
   }
 
   void dispose() {
-    heroInputController?.dispose();
-    introductionInputController?.dispose();
-    specialityInputController1?.dispose();
-    specialityInputController2?.dispose();
-    specialityInputController3?.dispose();
-    specialityInputController4?.dispose();
+    schoolNameInputController?.dispose();
+    adressInputController?.dispose();
+    phoneInputController?.dispose();
+    emailInputController?.dispose();
     buttonModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

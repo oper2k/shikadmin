@@ -20,6 +20,8 @@ class SearchModel extends FlutterFlowModel {
     searchfieldController?.dispose();
   }
 
+  /// Action blocks are added here.
+
   /// Additional helper methods are added here.
 
 }

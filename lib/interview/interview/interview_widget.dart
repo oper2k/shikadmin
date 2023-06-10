@@ -333,8 +333,10 @@ class _InterviewWidgetState extends State<InterviewWidget> {
                             context: context,
                             isGlobal: true,
                             avoidOverflow: false,
-                            targetAnchor: Alignment(0.0, 0.0),
-                            followerAnchor: Alignment(0.0, 0.0),
+                            targetAnchor: AlignmentDirectional(0.0, 0.0)
+                                .resolve(Directionality.of(context)),
+                            followerAnchor: AlignmentDirectional(0.0, 0.0)
+                                .resolve(Directionality.of(context)),
                             builder: (dialogContext) {
                               return Material(
                                 color: Colors.transparent,

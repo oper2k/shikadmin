@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 class HomePageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for navMenu component.
   late NavMenuModel navMenuModel;
 
@@ -21,8 +22,11 @@ class HomePageModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     navMenuModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

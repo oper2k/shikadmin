@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 class FactsModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for navMenu component.
   late NavMenuModel navMenuModel;
   // Model for search component.
@@ -26,10 +27,13 @@ class FactsModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     navMenuModel.dispose();
     searchModel.dispose();
     factsCompoModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

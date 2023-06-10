@@ -47,9 +47,9 @@ class FFAppState extends ChangeNotifier {
 
   void updateDropdownRoleAtIndex(
     int _index,
-    Function(RoleStruct) updateFn,
+    RoleStruct Function(RoleStruct) updateFn,
   ) {
-    updateFn(_dropdownRole[_index]);
+    _dropdownRole[_index] = updateFn(_dropdownRole[_index]);
   }
 
   List<String> _dropdownKnowledgeLevel = [
@@ -77,9 +77,9 @@ class FFAppState extends ChangeNotifier {
 
   void updateDropdownKnowledgeLevelAtIndex(
     int _index,
-    Function(String) updateFn,
+    String Function(String) updateFn,
   ) {
-    updateFn(_dropdownKnowledgeLevel[_index]);
+    _dropdownKnowledgeLevel[_index] = updateFn(_dropdownKnowledgeLevel[_index]);
   }
 
   List<String> _dropdownArtDirection = [
@@ -108,9 +108,9 @@ class FFAppState extends ChangeNotifier {
 
   void updateDropdownArtDirectionAtIndex(
     int _index,
-    Function(String) updateFn,
+    String Function(String) updateFn,
   ) {
-    updateFn(_dropdownArtDirection[_index]);
+    _dropdownArtDirection[_index] = updateFn(_dropdownArtDirection[_index]);
   }
 }
 
@@ -122,4 +122,16 @@ LatLng? _latLngFromString(String? val) {
   final lat = double.parse(split.first);
   final lng = double.parse(split.last);
   return LatLng(lat, lng);
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

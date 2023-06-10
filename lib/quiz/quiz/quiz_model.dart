@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 class QuizModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for navMenu component.
   late NavMenuModel navMenuModel;
   // Model for search component.
@@ -33,11 +34,14 @@ class QuizModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     navMenuModel.dispose();
     searchModel.dispose();
     quizCompoModels1.dispose();
     quizCompoModels2.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

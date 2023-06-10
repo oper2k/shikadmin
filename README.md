@@ -1,20 +1,47 @@
-# Shik Admin Panel
+Ссылка на скачивание мобильного приложения:
+Android - https://drive.google.com/drive/folders/1oZIxaFXX3RoUzRW4yjbzqxkEgrYhqKWY?usp=sharing
+Apple - https://testflight.apple.com/join/Rp8eSl1m
 
-A new Flutter project.
+Ссылка на веб админку - https://shikadmin.appful.pro
+использовать для входа 
+логин: oper2k@yandex.ru
+пароль: 123456
 
-## Getting Started
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
 
-### Getting started continued:
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Ссылка на код мобильного приложения - https://github.com/oper2k/shik
+
+Ссылка на код для веб админки - https://github.com/oper2k/shikadmin
+
+
+
+Структура проектов (оба проекта схожи по структуре):
+
+Папки:
+android/ - содержит специфические для платформы Android настройки, исходный код и ресурсы. Здесь находятся редактируемые файлы AnroidManifest.xml и build.gradle, а также ресурсная папка res (в которой, например, будет находиться иконка приложения для Android в различных разрешениях)
+assets/ -  Эта папка содержит статические ресурсы, необходимые для приложения, такие как изображения, шрифты и аудиофайлы.
+ios/ - данная папка очень похожа на папку android, с тем отличием, что в ней находятся специфичные для платформы iOS файлы: настройки, исходный код и ресурсы. Здесь имеется папка Assets.xcassets, которая очень похожа на res в андроиде, а также файл Info.plist, похожий на AndroidManifest.xml. Если же у вас появится необходимость добавить специфичный для iOS.
+lib/ - именно в этой директории проводится основная работа по написанию кода. Изначально внутри находится только файлик main.dart, который содержит функцию main - точку входа в наше приложение.
+test/ - в данную папку будет добавлять код связанный с автоматическим тестированием.
+pubspec.lock - автоматически генерируемый файл, основанный на файле .yaml. Он содержит подробную информацию обо всех зависимостях. 
+pubspec.yaml - это конфигурационный файл проекта. Здесь объявляются зависимости, которые необходимы проекту, подключаются необходимые шрифты и подключаются ассеты (картинки, иконки, аудио файлы и т.д.).
+
+
+Основная папка проекта lib/ имеет подпапки:
+auth - все что связано с авторизацией пользователя в приложении
+backend - все что связано с коннектом к базе данных
+components - тут хранятся компоненты которые мы сами написали, которые используются в приложение (виджеты)
+courses - файлы и папки относящиеся к разделу курсы. Верстка экранов, логика.
+flutter_flow -  тут хранятся компоненты которые мы взяли из библиотеки FF (видеоплеер, карта, аудиоплеер), а также функции и анимации.  
+game/piano -  файлы и папки относящиеся к разделу игры/викторины. В данный момент доступна одна, игра на пианино. Верстка экранов, логика.
+map_folder - файлы и папки относящиеся к разделу карта. Верстка экранов, логика.
+news - файлы и папки относящиеся к разделу новости. Верстка экранов, логика.
+profile - файлы и папки относящиеся к разделу профиль пользователя. Верстка экранов, логика.
+registration - файлы и папки относящиеся к разделу регистрация. Верстка экранов, логика.
+route - файлы и папки относящиеся к разделу маршрут пользователя. Верстка экранов, логика.
+
+app_state.dart - локальные переменные и функции относящиеся к ним

@@ -72,7 +72,7 @@ class _LoginAccessFailureWidgetState extends State<LoginAccessFailureWidget> {
               Align(
                 alignment: AlignmentDirectional(0.0, 0.0),
                 child: Text(
-                  'У вас не достаточно прав \nдля использования админ панели!',
+                  'У вас недостаточно прав \nдля использования админ панели!',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyLarge.override(
                         fontFamily: 'Inter',

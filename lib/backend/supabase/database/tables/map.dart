@@ -40,4 +40,7 @@ class MapRow extends SupabaseDataRow {
 
   String? get email => getField<String>('email');
   set email(String? value) => setField<String>('email', value);
+
+  String? get profession => getField<String>('profession');
+  set profession(String? value) => setField<String>('profession', value);
 }

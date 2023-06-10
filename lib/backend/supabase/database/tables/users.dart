@@ -44,4 +44,7 @@ class UsersRow extends SupabaseDataRow {
 
   String? get email => getField<String>('email');
   set email(String? value) => setField<String>('email', value);
+
+  DateTime? get lastSession => getField<DateTime>('last_session');
+  set lastSession(DateTime? value) => setField<DateTime>('last_session', value);
 }

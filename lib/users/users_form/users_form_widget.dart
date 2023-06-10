@@ -419,15 +419,12 @@ class _UsersFormWidgetState extends State<UsersFormWidget> {
                           () => _model.dropDownArtDirectionValue = val),
                       width: double.infinity,
                       height: 50.0,
-                      searchHintTextStyle:
-                          FlutterFlowTheme.of(context).labelMedium,
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.normal,
                               ),
                       hintText: 'Направление икусства',
-                      searchHintText: 'Search for an item...',
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: Color(0xB2404041),
@@ -463,15 +460,12 @@ class _UsersFormWidgetState extends State<UsersFormWidget> {
                           () => _model.dropDownKnowledgeLevelValue = val),
                       width: double.infinity,
                       height: 50.0,
-                      searchHintTextStyle:
-                          FlutterFlowTheme.of(context).labelMedium,
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.normal,
                               ),
                       hintText: 'Уровень знаний',
-                      searchHintText: 'Search for an item...',
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: Color(0xB3404041),

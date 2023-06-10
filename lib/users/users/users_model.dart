@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 class UsersModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for navMenu component.
   late NavMenuModel navMenuModel;
   // Model for search component.
@@ -31,11 +32,14 @@ class UsersModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     navMenuModel.dispose();
     searchModel.dispose();
     userModels1.dispose();
     userModels2.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

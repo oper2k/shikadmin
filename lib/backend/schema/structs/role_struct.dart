@@ -66,6 +66,14 @@ class RoleStruct extends BaseStruct {
 
   @override
   String toString() => 'RoleStruct(${toMap()})';
+
+  @override
+  bool operator ==(Object other) {
+    return other is RoleStruct && name == other.name && value == other.value;
+  }
+
+  @override
+  int get hashCode => const ListEquality().hash([name, value]);
 }
 
 RoleStruct createRoleStruct({

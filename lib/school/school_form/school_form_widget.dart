@@ -1,16 +1,24 @@
+import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/button/button_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'school_form_model.dart';
 export 'school_form_model.dart';
 
 class SchoolFormWidget extends StatefulWidget {
-  const SchoolFormWidget({Key? key}) : super(key: key);
+  const SchoolFormWidget({
+    Key? key,
+    this.feedMapRow,
+  }) : super(key: key);
+
+  final MapRow? feedMapRow;
 
   @override
   _SchoolFormWidgetState createState() => _SchoolFormWidgetState();
@@ -30,12 +38,30 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
     super.initState();
     _model = createModel(context, () => SchoolFormModel());
 
-    _model.heroInputController ??= TextEditingController();
-    _model.introductionInputController ??= TextEditingController();
-    _model.specialityInputController1 ??= TextEditingController();
-    _model.specialityInputController2 ??= TextEditingController();
-    _model.specialityInputController3 ??= TextEditingController();
-    _model.specialityInputController4 ??= TextEditingController();
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (widget.feedMapRow != null) {
+        setState(() {
+          _model.schoolNameInputController?.text = widget.feedMapRow!.title!;
+        });
+        setState(() {
+          _model.adressInputController?.text = widget.feedMapRow!.adress!;
+        });
+        setState(() {
+          _model.phoneInputController?.text = widget.feedMapRow!.phone!;
+        });
+        setState(() {
+          _model.emailInputController?.text = widget.feedMapRow!.email!;
+        });
+      } else {
+        return;
+      }
+    });
+
+    _model.schoolNameInputController ??= TextEditingController();
+    _model.adressInputController ??= TextEditingController();
+    _model.phoneInputController ??= TextEditingController();
+    _model.emailInputController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -85,7 +111,7 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            'Редактировать запись пользователя',
+                            'Добавить адрес',
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Inter',
@@ -110,60 +136,75 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                       ),
                     ],
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(0.05, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                      child: Container(
-                        width: 200.0,
-                        height: 100.0,
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Container(
-                                width: 200.0,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color:
-                                      FlutterFlowTheme.of(context).notActiveBtn,
-                                  borderRadius: BorderRadius.circular(16.0),
-                                  shape: BoxShape.rectangle,
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    'https://picsum.photos/seed/87/600',
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(1.0, -1.0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 12.0, 12.0, 0.0),
-                                child: Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    FFIcons.kfluentEdit16Regular,
-                                    color: FlutterFlowTheme.of(context).success,
-                                    size: 24.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 6.0,
+                            color: Color(0x41EFEFEF),
+                            offset: Offset(0.0, 0.0),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: TextFormField(
+                        controller: _model.schoolNameInputController,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.schoolNameInputController',
+                          Duration(milliseconds: 500),
+                          () => setState(() {}),
                         ),
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Название школы',
+                          labelStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 0.0, 0.0),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                        validator: _model.schoolNameInputControllerValidator
+                            .asValidator(context),
                       ),
                     ),
                   ),
@@ -183,15 +224,15 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: TextFormField(
-                        controller: _model.heroInputController,
+                        controller: _model.adressInputController,
                         onChanged: (_) => EasyDebounce.debounce(
-                          '_model.heroInputController',
+                          '_model.adressInputController',
                           Duration(milliseconds: 500),
                           () => setState(() {}),
                         ),
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Герой интервью',
+                          labelText: 'Адрес школы',
                           labelStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
@@ -234,14 +275,14 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                               fontSize: 16.0,
                               fontWeight: FontWeight.normal,
                             ),
-                        validator: _model.heroInputControllerValidator
+                        validator: _model.adressInputControllerValidator
                             .asValidator(context),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -255,15 +296,15 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: TextFormField(
-                        controller: _model.introductionInputController,
+                        controller: _model.phoneInputController,
                         onChanged: (_) => EasyDebounce.debounce(
-                          '_model.introductionInputController',
+                          '_model.phoneInputController',
                           Duration(milliseconds: 500),
                           () => setState(() {}),
                         ),
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Вступление',
+                          labelText: 'Телефон',
                           labelStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
@@ -306,16 +347,14 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                               fontSize: 16.0,
                               fontWeight: FontWeight.normal,
                             ),
-                        keyboardType: TextInputType.number,
-                        validator: _model.introductionInputControllerValidator
+                        validator: _model.phoneInputControllerValidator
                             .asValidator(context),
-                        inputFormatters: [_model.introductionInputMask],
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -329,43 +368,43 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: TextFormField(
-                        controller: _model.specialityInputController1,
+                        controller: _model.emailInputController,
                         onChanged: (_) => EasyDebounce.debounce(
-                          '_model.specialityInputController1',
+                          '_model.emailInputController',
                           Duration(milliseconds: 500),
                           () => setState(() {}),
                         ),
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Специальность',
+                          labelText: 'Email',
                           labelStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.normal,
                                   ),
                           hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          errorBorder: UnderlineInputBorder(
+                          errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          focusedErrorBorder: UnderlineInputBorder(
+                          focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
@@ -380,15 +419,14 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                               fontSize: 16.0,
                               fontWeight: FontWeight.normal,
                             ),
-                        keyboardType: TextInputType.number,
-                        validator: _model.specialityInputController1Validator
+                        validator: _model.emailInputControllerValidator
                             .asValidator(context),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -401,67 +439,47 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                         ],
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      child: TextFormField(
-                        controller: _model.specialityInputController2,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          '_model.specialityInputController2',
-                          Duration(milliseconds: 500),
-                          () => setState(() {}),
+                      child: FlutterFlowDropDown<String>(
+                        controller: _model.dropDownCategoryValueController ??=
+                            FormFieldController<String>(
+                          _model.dropDownCategoryValue ??=
+                              widget.feedMapRow?.category != null &&
+                                      widget.feedMapRow?.category != ''
+                                  ? widget.feedMapRow?.category
+                                  : '',
                         ),
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Цитата',
-                          labelStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 0.0, 0.0),
+                        options: ['ЦАО', 'САО', 'СВАО', 'ВАО', 'ЮВАО'],
+                        onChanged: (val) =>
+                            setState(() => _model.dropDownCategoryValue = val),
+                        width: double.infinity,
+                        height: 50.0,
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.normal,
+                                ),
+                        hintText: 'Категория',
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: Color(0xB2404041),
+                          size: 24.0,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.normal,
-                            ),
-                        keyboardType: TextInputType.number,
-                        validator: _model.specialityInputController2Validator
-                            .asValidator(context),
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 2.0,
+                        borderColor: Colors.transparent,
+                        borderWidth: 2.0,
+                        borderRadius: 12.0,
+                        margin: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 4.0, 16.0, 4.0),
+                        hidesUnderline: true,
+                        isSearchable: false,
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -474,147 +492,102 @@ class _SchoolFormWidgetState extends State<SchoolFormWidget> {
                         ],
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      child: TextFormField(
-                        controller: _model.specialityInputController3,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          '_model.specialityInputController3',
-                          Duration(milliseconds: 500),
-                          () => setState(() {}),
+                      child: FlutterFlowDropDown<String>(
+                        controller: _model.dropDownProfessionValueController ??=
+                            FormFieldController<String>(
+                          _model.dropDownProfessionValue ??=
+                              widget.feedMapRow?.profession != null &&
+                                      widget.feedMapRow?.profession != ''
+                                  ? widget.feedMapRow?.profession
+                                  : '',
                         ),
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Основная часть',
-                          labelStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 0.0, 0.0),
+                        options: ['Музыка', 'Изо', 'Театр', 'Хорео', 'Цирк'],
+                        onChanged: (val) => setState(
+                            () => _model.dropDownProfessionValue = val),
+                        width: double.infinity,
+                        height: 50.0,
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.normal,
+                                ),
+                        hintText: 'Профессия',
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: Color(0xB2404041),
+                          size: 24.0,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.normal,
-                            ),
-                        keyboardType: TextInputType.number,
-                        validator: _model.specialityInputController3Validator
-                            .asValidator(context),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 6.0,
-                            color: Color(0x41EFEFEF),
-                            offset: Offset(0.0, 0.0),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: TextFormField(
-                        controller: _model.specialityInputController4,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          '_model.specialityInputController4',
-                          Duration(milliseconds: 500),
-                          () => setState(() {}),
-                        ),
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Ссылка на интервью',
-                          labelStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 0.0, 0.0),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.normal,
-                            ),
-                        keyboardType: TextInputType.number,
-                        validator: _model.specialityInputController4Validator
-                            .asValidator(context),
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 2.0,
+                        borderColor: Colors.transparent,
+                        borderWidth: 2.0,
+                        borderRadius: 12.0,
+                        margin: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 4.0, 16.0, 4.0),
+                        hidesUnderline: true,
+                        isSearchable: false,
                       ),
                     ),
                   ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(96.0, 24.0, 96.0, 0.0),
-                    child: wrapWithModel(
-                      model: _model.buttonModel,
-                      updateCallback: () => setState(() {}),
-                      child: ButtonWidget(
-                        text: 'Сохранить',
-                        isActive: false,
-                        btnColor: FlutterFlowTheme.of(context).greenActive,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        if ((_model.schoolNameInputController.text != null &&
+                                _model.schoolNameInputController.text != '') &&
+                            (_model.adressInputController.text != null &&
+                                _model.adressInputController.text != '') &&
+                            (_model.phoneInputController.text != null &&
+                                _model.phoneInputController.text != '') &&
+                            (_model.emailInputController.text != null &&
+                                _model.emailInputController.text != '') &&
+                            (_model.dropDownCategoryValue != null &&
+                                _model.dropDownCategoryValue != '') &&
+                            (_model.dropDownProfessionValue != null &&
+                                _model.dropDownProfessionValue != '')) {
+                          if (widget.feedMapRow != null) {
+                            await MapTable().update(
+                              data: {
+                                'title': _model.schoolNameInputController.text,
+                                'adress': _model.adressInputController.text,
+                                'phone': _model.phoneInputController.text,
+                                'category': _model.dropDownCategoryValue,
+                                'email': _model.emailInputController.text,
+                                'profession': _model.dropDownProfessionValue,
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                widget.feedMapRow?.id,
+                              ),
+                            );
+                          } else {
+                            await MapTable().insert({
+                              'title': _model.schoolNameInputController.text,
+                              'adress': _model.adressInputController.text,
+                              'phone': _model.phoneInputController.text,
+                              'category': _model.dropDownCategoryValue,
+                              'email': _model.emailInputController.text,
+                              'profession': _model.dropDownProfessionValue,
+                            });
+                          }
+                        } else {
+                          return;
+                        }
+                      },
+                      child: wrapWithModel(
+                        model: _model.buttonModel,
+                        updateCallback: () => setState(() {}),
+                        child: ButtonWidget(
+                          text: 'Сохранить',
+                          isActive: false,
+                          btnColor: FlutterFlowTheme.of(context).greenActive,
+                        ),
                       ),
                     ),
                   ),

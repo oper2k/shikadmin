@@ -16,6 +16,11 @@ class InterviewFormModel extends FlutterFlowModel {
 
   ///  State fields for stateful widgets in this component.
 
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for InterviewHeroInput widget.
   TextEditingController? interviewHeroInputController;
   String? Function(BuildContext, String?)?
@@ -36,20 +41,12 @@ class InterviewFormModel extends FlutterFlowModel {
   TextEditingController? mainPartFieldController;
   String? Function(BuildContext, String?)? mainPartFieldControllerValidator;
   // Model for button component.
-  late ButtonModel buttonModel1;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
-
-  // Model for button component.
-  late ButtonModel buttonModel2;
+  late ButtonModel buttonModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    buttonModel1 = createModel(context, () => ButtonModel());
-    buttonModel2 = createModel(context, () => ButtonModel());
+    buttonModel = createModel(context, () => ButtonModel());
   }
 
   void dispose() {
@@ -59,9 +56,10 @@ class InterviewFormModel extends FlutterFlowModel {
     interviewUrlInputController?.dispose();
     introductionInputController?.dispose();
     mainPartFieldController?.dispose();
-    buttonModel1.dispose();
-    buttonModel2.dispose();
+    buttonModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

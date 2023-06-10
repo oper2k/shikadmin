@@ -457,15 +457,12 @@ class _QuizFormWidgetState extends State<QuizFormWidget> {
                             () => _model.dropDownCorrectAnswerValue = val),
                         width: double.infinity,
                         height: 50.0,
-                        searchHintTextStyle:
-                            FlutterFlowTheme.of(context).labelMedium,
                         textStyle:
                             FlutterFlowTheme.of(context).bodyMedium.override(
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.normal,
                                 ),
                         hintText: 'Номер правильного ответа',
-                        searchHintText: 'Search for an item...',
                         icon: Icon(
                           Icons.keyboard_arrow_down_rounded,
                           color: Color(0xB2404041),
