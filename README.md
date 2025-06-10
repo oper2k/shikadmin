@@ -1,50 +1,13 @@
-Ссылка на скачивание мобильного приложения:
-Android - https://drive.google.com/drive/folders/1oZIxaFXX3RoUzRW4yjbzqxkEgrYhqKWY?usp=sharing
-Apple - https://testflight.apple.com/join/Rp8eSl1m
-Можно использовать для входа 
-логин: oper2k@yandex.ru
-пароль: 123456
+Link to the mobile application code - https://github.com/oper2k/shik
 
-Ссылка на веб админку - https://shikadmin.appful.pro
-использовать для входа 
-логин: oper2k@yandex.ru
-пароль: 123456
+Link to the code for the web admin - https://github.com/oper2k/shikadmin
 
+Structure of projects (both projects are similar in structure):
 
+Folders: android/ - contains Android platform-specific settings, source code and resources. Here are the editable files AnroidManifest.xml and build.gradle, as well as the resource folder res (which, for example, will contain the icon of the Android application in different resolutions) assets/ - This folder contains static resources necessary for the application, such as images, fonts and audio files. ios/ - this folder is very similar to the android folder, with the difference that it contains platform-specific iOS files: settings, source code and resources. There is an Assets.xcassets folder, which is very similar to res in Android, as well as an Info.plist file similar to AndroidManifest.xml. If you need to add a specific for iOS. lib/ - it is in this directory that the main work on writing code is carried out. Initially, there is only the main.dart file inside, which contains the main function - the entry point to our application. test/ - the code associated with automatic testing will be added to this folder. pubspec.lock is an automatically generated file based on the .yaml file. It contains detailed information about all dependencies. pubspec.yaml is the configuration file of the project. Here the dependencies required by the project are announced, the necessary fonts are connected and assets are connected (pictures, icons, audio files, etc.).
 
+The main folder of the lib/ project has subfolders: auth - everything related to user authorization in the backend application - everything related to the connection to the components database - there are the components that we wrote ourselves, which are used in the application (widgets) courses - files and folders related to the courses section. Screen layout, logic. flutter_flow - there are components that we took from the FF library (video player, map, audio player), as well as functions and animations.
 
+Game/piano - files and folders related to the game/quiz section. At the moment, one piano game is available. Screen layout, logic. map_folder - files and folders related to the map section. Screen layout, logic. news - files and folders related to the news section. Screen layout, logic. profile - files and folders related to the user profile section. Screen layout, logic. registration - files and folders related to the registration section. Screen layout, logic. route - files and folders related to the user route section. Screen layout, logic.
 
-
-
-Ссылка на код мобильного приложения - https://github.com/oper2k/shik
-
-Ссылка на код для веб админки - https://github.com/oper2k/shikadmin
-
-
-
-Структура проектов (оба проекта схожи по структуре):
-
-Папки:
-android/ - содержит специфические для платформы Android настройки, исходный код и ресурсы. Здесь находятся редактируемые файлы AnroidManifest.xml и build.gradle, а также ресурсная папка res (в которой, например, будет находиться иконка приложения для Android в различных разрешениях)
-assets/ -  Эта папка содержит статические ресурсы, необходимые для приложения, такие как изображения, шрифты и аудиофайлы.
-ios/ - данная папка очень похожа на папку android, с тем отличием, что в ней находятся специфичные для платформы iOS файлы: настройки, исходный код и ресурсы. Здесь имеется папка Assets.xcassets, которая очень похожа на res в андроиде, а также файл Info.plist, похожий на AndroidManifest.xml. Если же у вас появится необходимость добавить специфичный для iOS.
-lib/ - именно в этой директории проводится основная работа по написанию кода. Изначально внутри находится только файлик main.dart, который содержит функцию main - точку входа в наше приложение.
-test/ - в данную папку будет добавлять код связанный с автоматическим тестированием.
-pubspec.lock - автоматически генерируемый файл, основанный на файле .yaml. Он содержит подробную информацию обо всех зависимостях. 
-pubspec.yaml - это конфигурационный файл проекта. Здесь объявляются зависимости, которые необходимы проекту, подключаются необходимые шрифты и подключаются ассеты (картинки, иконки, аудио файлы и т.д.).
-
-
-Основная папка проекта lib/ имеет подпапки:
-auth - все что связано с авторизацией пользователя в приложении
-backend - все что связано с коннектом к базе данных
-components - тут хранятся компоненты которые мы сами написали, которые используются в приложение (виджеты)
-courses - файлы и папки относящиеся к разделу курсы. Верстка экранов, логика.
-flutter_flow -  тут хранятся компоненты которые мы взяли из библиотеки FF (видеоплеер, карта, аудиоплеер), а также функции и анимации.  
-game/piano -  файлы и папки относящиеся к разделу игры/викторины. В данный момент доступна одна, игра на пианино. Верстка экранов, логика.
-map_folder - файлы и папки относящиеся к разделу карта. Верстка экранов, логика.
-news - файлы и папки относящиеся к разделу новости. Верстка экранов, логика.
-profile - файлы и папки относящиеся к разделу профиль пользователя. Верстка экранов, логика.
-registration - файлы и папки относящиеся к разделу регистрация. Верстка экранов, логика.
-route - файлы и папки относящиеся к разделу маршрут пользователя. Верстка экранов, логика.
-
-app_state.dart - локальные переменные и функции относящиеся к ним
+App_state.dart - local variables and related functions
